@@ -1,26 +1,41 @@
 require './lib/pet'
 
 RSpec.describe Pet do
-  before(:each) do
-    @samson = Pet.new({name: "Samson", type: :dog})
+  it 'exists' do
+    samson = Pet.new({name: "Samson", type: :dog, age: 3})
+
+    expect(samson).to be_a(Pet)
   end
 
-  it "exists" do
-    expect(@samson).to be_instance_of(Pet)
+  it 'has a name' do
+    samson = Pet.new({name: "Samson", type: :dog, age: 3})
+
+    expect(samson.name).to eq("Samson")
   end
 
-  it "has attributes" do
-    expect(@samson.name).to eq("Samson")
-    expect(@samson.type).to eq(:dog)
+  it 'has a type' do
+    samson = Pet.new({name: "Samson", type: :dog, age: 3})
+
+    expect(samson.type).to eq(:dog)
   end
 
-  it "is not fed by default" do
-    expect(@samson.fed?).to be(false)
+  it 'has an age' do
+    samson = Pet.new({name: "Samson", type: :dog, age: 3})
+
+    expect(samson.age).to eq(3)
   end
 
-  it "can be fed" do
-    @samson.feed
-    expect(@samson.fed?).to be(true)
+  it 'is not fed' do
+    samson = Pet.new({name: "Samson", type: :dog, age: 3})
+
+    expect(samson.fed?).to eq(false)
   end
 
+  it 'can get fed' do
+    samson = Pet.new({name: "Samson", type: :dog, age: 3})
+
+    samson.feed
+
+    expect(samson.fed?).to eq(true)
+  end
 end
